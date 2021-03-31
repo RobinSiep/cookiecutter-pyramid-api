@@ -7,25 +7,25 @@ with open(os.path.join(here, 'VERSION')) as f:
     VERSION = f.read().strip()
 
 requires = [
-    'alembic~=1.5',
-    'apispec[validation]~=4.3',
-    'bcrypt~=3.2',
-    'marshmallow~=3.10',
-    'psycopg2~=2.8',
-    'pyramid~=1.10',
-    'pyramid_session_redis~=1.5',
+    'alembic~=1.5.8',
+    'apispec[validation]~=4.3.0',
+    'bcrypt~=3.2.0',
+    'marshmallow~=3.11.1',
+    'psycopg2~=2.8.6',
+    'pyramid~=1.10.8',
+    'pyramid_session_redis~=1.6.0',
     'pyramid_tm~=2.4',
-    'sendgrid~=6.6',
-    'sqlalchemy~=1.3',
-    'waitress~=1.4',
+    'sendgrid~=6.6.0',
+    'sqlalchemy~=1.3.24',
+    'waitress~=1.4.4',
     'zope.sqlalchemy~=1.3'
 ]
 
 tests_require = [
-    'pytest~=6.2',
-    'pytest-mock~=3.5',
-    'webtest~=2.0',
-    'sqlalchemy_utils~=0.36'
+    'pytest~=6.2.2',
+    'pytest-mock~=3.5.1',
+    'sqlalchemy_utils~=0.36.8',
+    'webtest~=2.0.35'
 ]
 
 extras = {
