@@ -45,6 +45,6 @@ services:
     networks:
       - development
     environment:
-      API_URL: http://localhost:3141/openapi 
+      API_URL: http://localhost:{{cookiecutter.api_port}}/openapi
 networks:
   development:
