@@ -27,4 +27,11 @@ jobs:
           docker-compose -f test-compose.yml up --exit-code-from pyramidapi-test pyramidapi-test
 
       - name: Upload coverage report
-        run: bash <(curl -s https://codecov.io/bash)
+        env:
+          CODECOV_BASH_URL: https://codecov.io/bash
+          CODECOV_SHASUM_URL: https://raw.githubusercontent.com/codecov/codecov-bash/master/SHA256SUM
+        run: |
+          curl -s $CODECOV_BASH_URL > codecov
+          chmod +x codecov
+          curl --location --show-error --silent -s $CODECOV_SHASUM_URL | head -1 | sha256sum --check \
+              && ./codecov
