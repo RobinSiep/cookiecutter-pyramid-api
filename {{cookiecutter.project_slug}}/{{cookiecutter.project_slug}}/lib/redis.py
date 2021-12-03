@@ -3,11 +3,12 @@ import redis
 from {{cookiecutter.project_slug}}.lib.singleton import Singleton
 
 
-class RedisSession(object, metaclass=Singleton):
+class RedisSession(metaclass=Singleton):
     def __init__(self, default_ttl_in_seconds):
         self.default_ttl_in_seconds = default_ttl_in_seconds
 
     def configure(self, host, port=6379, db=0, password=None):
+        self.db = db
         self.session = redis.StrictRedis(host=host, port=port, db=db,
                                          password=password)
 
