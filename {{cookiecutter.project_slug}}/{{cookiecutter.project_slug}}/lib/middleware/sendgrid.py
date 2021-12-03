@@ -1,7 +1,7 @@
 from http import HTTPStatus
 
-from sendgrid.helpers.mail import Mail
 from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 from {{cookiecutter.project_slug}}.lib.settings import settings
 
