@@ -5,14 +5,14 @@ from {{cookiecutter.project_slug}}.lib.collections import update
 
 LOCAL_SETTINGS_PATH = '../../local-settings.ini'
 UPDATE_RECURSION_EXCLUDED = ['formatter_generic']
-settings = dict()
+settings = {}
 
 
 def init_settings(settings_):
     global settings
-    updated_settings = update(settings, _get_local_config(),
+    updated_settings = update(settings, settings_,
                               UPDATE_RECURSION_EXCLUDED)
-    updated_settings = update(updated_settings, settings_,
+    updated_settings = update(updated_settings, _get_local_config(),
                               UPDATE_RECURSION_EXCLUDED)
     settings = updated_settings
 
