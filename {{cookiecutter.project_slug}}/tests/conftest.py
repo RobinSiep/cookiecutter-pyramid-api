@@ -49,7 +49,7 @@ def test_app_with_authenticated_user_id(test_app, dummy_user):
         'password': 'testing123'
     })
 
-    yield (test_app, user_id)
+    yield test_app, user_id
 
 
 @fixture
