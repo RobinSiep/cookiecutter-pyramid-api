@@ -25,7 +25,7 @@ def test_login_success(dummy_request, dummy_user):
 ])
 def test_login_wrong_credentials(dummy_request, dummy_user, email_address,
                                  password):
-    user, _ = save(dummy_user)
+    save(dummy_user)
     auth_manager = AuthWithPasswordManager(dummy_request)
 
     with pytest.raises(HTTPBadRequest) as bad_request:

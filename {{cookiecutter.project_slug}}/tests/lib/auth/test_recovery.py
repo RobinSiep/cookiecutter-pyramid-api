@@ -141,7 +141,7 @@ def test_logout_success(dummy_request, dummy_user):
         token_hash=token_hash,
         token_salt=token_salt
     )
-    _, recovery_token_id = save(recovery_token)
+    save(recovery_token)
 
     auth_manager = AuthWithRecoveryTokenManager(dummy_request)
     auth_manager.login({
