@@ -38,9 +38,13 @@ class UpdateUserSchema(UserSchema):
     current_password = fields.Str(load_only=True)
     verification_token = fields.Str(load_only=True)
 
-    def __init__(self, user: User = None,
-                 requires_current_password: bool = True,
-                 *args, **kwargs):
+    def __init__(
+        self,
+        user: User = None,
+        requires_current_password: bool = True,
+        *args,
+        **kwargs
+    ):
         super().__init__(*args, **kwargs)
         self.context['user'] = user
         self.context['requires_current_password'] = requires_current_password

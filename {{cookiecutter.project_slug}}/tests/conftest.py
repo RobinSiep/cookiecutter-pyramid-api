@@ -1,6 +1,7 @@
 import os
 import uuid
 from configparser import ConfigParser
+from unittest.mock import patch
 
 import redis
 from pyramid.paster import get_appsettings
@@ -13,7 +14,8 @@ import {{cookiecutter.project_slug}}.lib.settings
 from {{cookiecutter.project_slug}} import main
 from {{cookiecutter.project_slug}}.lib.openapi import APISpec, _init_spec
 from {{cookiecutter.project_slug}}.lib.redis import RedisSession
-from {{cookiecutter.project_slug}}.models import Base, save
+from {{cookiecutter.project_slug}}.lib.settings import read_config
+from {{cookiecutter.project_slug}}.models import Base, init_sqlalchemy, save
 from {{cookiecutter.project_slug}}.models.user import User
 
 user_id = uuid.UUID('838c3768-768a-434a-b6e5-a77ba27d0ef7')
@@ -25,13 +27,22 @@ def ini_file(request):
 
 
 @fixture(scope='session')
+def test_settings(ini_file):
+    return read_config(ini_file)
+
+
+@fixture(scope='session')
 def app_settings(ini_file):
     return get_appsettings(ini_file)
 
 
-@fixture(scope='session')
-def router(app_settings, ini_file):
-    return main({'__file__': ini_file}, **app_settings)
+@fixture(scope='function')
+def router(app_settings, test_settings, ini_file):
+    with patch('{{cookiecutter.project_slug}}.read_config',
+               return_value=test_settings):
+        app = main({'__file__': ini_file}, **app_settings)
+        init_sqlalchemy(test_settings)
+        yield app
 
 
 @fixture
@@ -49,7 +60,7 @@ def test_app_with_authenticated_user_id(test_app, dummy_user):
         'password': 'testing123'
     })
 
-    yield (test_app, user_id)
+    yield test_app, user_id
 
 
 @fixture

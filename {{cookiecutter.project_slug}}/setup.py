@@ -15,6 +15,7 @@ requires = [
     'pyramid~=1.10.8',
     'pyramid_session_redis~=1.6.0',
     'pyramid_tm~=2.4',
+    'redis~=3.5.3',
     'sendgrid~=6.6.0',
     'sqlalchemy~=1.3.24',
     'waitress~=1.4.4',
