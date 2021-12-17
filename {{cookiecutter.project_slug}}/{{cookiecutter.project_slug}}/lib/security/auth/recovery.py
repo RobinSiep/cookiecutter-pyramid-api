@@ -18,8 +18,6 @@ class AuthWithRecoveryTokenManager(AuthManager):
         user.set_verified()
         save(user)
 
-        return response
-
     def _get_hash_and_salt_from_user(self, user: User = None):
         return (
             user.active_recovery_token.token_hash,
